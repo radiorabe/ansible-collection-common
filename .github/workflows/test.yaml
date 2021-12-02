@@ -31,9 +31,7 @@ jobs:
         black .
 
     - name: Lint with ansible-lint
-      uses: ansible/ansible-lint-action@v4.1.0
+      uses: ansible/ansible-lint-action@master
       with:
         targets: |
           roles/core
-        override-deps: |
-          ansible==2.9
