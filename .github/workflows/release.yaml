@@ -11,7 +11,14 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Prepare version
+      id: prep
+      run: |
+        VERSION=${GITHUB_REF#refs/tags/v}
+        echo ::set-output name=version::${VERSION}
+
     - name: Deploy the collection
       uses: artis3n/ansible_galaxy_collection@v2
       with:
         api_key: ${{ secrets.GALAXY_API_KEY }}
+        galaxy_version: ${{ steps.prep.outputs.version }}
