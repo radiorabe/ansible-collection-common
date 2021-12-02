@@ -5,8 +5,6 @@ readme: README.md
 authors:
   - Lucas Bickel <@hairmare>
 description: RaBe Ansible Roles and Playbooks for use with Foreman
-license:
-  - AGPL-3.0-only
 license_file: LICENSE
 tags:
   - radiorabe
