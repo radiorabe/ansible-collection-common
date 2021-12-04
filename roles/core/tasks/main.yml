@@ -9,5 +9,3 @@
     - "radiorabe_core_realm: {{ radiorabe_core_realm }}"
     - "radiorabe_core_admin_name: {{ radiorabe_core_admin_name }}"
     - "radiorabe_core_admin_mail: {{ radiorabe_core_admin_mail }}"
-  tags:
-    - always
