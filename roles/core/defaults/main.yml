@@ -4,7 +4,7 @@ radiorabe_core_hostname: 'rabe.ch'
 
 radiorabe_core_int_hostname: 'int.{{ radiorabe_core_hostname }}'
 
-radiorabe_core_realm: '{{ radiorabe_core_hostname | upper }}'
+radiorabe_core_realm: '{{ radiorabe_core_int_hostname | upper }}'
 
 radiorabe_core_admin_name: 'RaBe IT-Reaktion'
 
