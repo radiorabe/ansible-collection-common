@@ -12,7 +12,7 @@ Any pre-requisites that may not be covered by Ansible itself or the role should 
 | -------- | ------- | ----------- |
 | `radiorabe_core_hostname` | Our public domain name | `rabe.ch` |
 | `radiorabe_core_int_hostname` | Our internal third level domain | `int.{{ radiorabe_hostname }}` |
-| `radiorabe_core_realm` | Name of the RaBe realm | `'{{ radiorabe_core_hostname | upper }}'` |
+| `radiorabe_core_realm` | Name of the RaBe realm | Uppercase of `{{ radiorabe_core_int_hostname }}` |
 | `radiorabe_core_admin_name` | Name of Tech Group | `RaBe IT-Reaktion` |
 | `radiorabe_core_admin_mail` | Mail of Tech Group (for use as serveradmin, ...) | `it@{{ radiorabe_core_hostname }}` |
 
