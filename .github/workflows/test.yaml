@@ -31,7 +31,7 @@ jobs:
         black .
 
     - name: Lint with ansible-lint
-      uses: ansible/ansible-lint-action@master
+      uses: ansible-community/ansible-lint-action@v6
       with:
         targets: |
           roles/core
