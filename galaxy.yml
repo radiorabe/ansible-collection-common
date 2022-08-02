@@ -13,5 +13,5 @@ tags:
 dependencies: {}
 repository: https://github.com/radiorabe/ansible-collection-common
 documentation: https://github.com/radiorabe/ansible-collection-common/blob/main/README.md
-homepage: hhttps://github.com/radiorabe/ansible-collection-common
+homepage: https://github.com/radiorabe/ansible-collection-common
 issues: https://github.com/radiorabe/ansible-collection-common/issues
