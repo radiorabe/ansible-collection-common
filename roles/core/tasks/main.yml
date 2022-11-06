@@ -2,7 +2,7 @@
 # tasks file for radiorabe.common.core
 
 - name: RaBe Common | set core facts
-  set_fact:
+  ansible.builtin.set_fact:
     radiorabe_core_hostname: "{{ radiorabe_core_hostname }}"
     radiorabe_core_int_hostname: "{{ radiorabe_core_int_hostname }}"
     radiorabe_core_realm: "{{ radiorabe_core_realm }}"

@@ -5,6 +5,7 @@ Contains common roles and playbooks.
 ## Roles
 
 * [`core`](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/core)
+* [`base`](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/base)
 
 ## License
 
