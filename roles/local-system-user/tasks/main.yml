@@ -1,0 +1,10 @@
+---
+# tasks file for radiorabe.common.local-system-user
+
+- name: 'RaBe Base : Local System User : Add user {{ username }} with groups {{ usergroups }} and user home {{ home_directory }}.'
+  ansible.builtin.user:
+    name: '{{ username }}'
+    home: '{{ home_directory }}'
+    groups: '{{ usergroups }}'
+    system: true
+    append: yes
