@@ -6,5 +6,6 @@
     name: '{{ username }}'
     home: '{{ home_directory }}'
     groups: '{{ usergroups }}'
+    shell: '/sbin/nologin'
     system: true
     append: yes
