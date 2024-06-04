@@ -1,4 +1,4 @@
 # defaults for radiorabe.common.file
 
-radiorabe_file: []
+radiorabe_files: []
 radiorabe_copies: []
