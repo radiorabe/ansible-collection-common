@@ -1,0 +1,4 @@
+# defaults for radiorabe.common.local-system-user
+
+home_directory: '/home/{{username}}'
+usergroups: ''
