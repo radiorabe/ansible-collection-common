@@ -1,4 +1,4 @@
-# Ansible Role - radiorabe.common.local-system-user
+# Ansible Role - radiorabe.common.local_system_user
 
 Manage local system users using [`ansible.builtin.user module`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html). Shell or password won't be set with this role.
 
@@ -25,10 +25,10 @@ Including an example of how to use your role (for instance, with variables passe
 ```yaml
 - hosts: all
   roles:
-    - role: radiorabe.common.local-system-user
+    - role: radiorabe.common.local_system_user
       vars:
         username: local-sys
-    - role: radiorabe.common.local-system-user
+    - role: radiorabe.common.local_system_user
       vars:
         username: virtualizer
         home_directory: /var/lib/libvvirt/images/
