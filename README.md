@@ -4,8 +4,9 @@ Contains common roles and playbooks.
 
 ## Roles
 
-* [`core`](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/core)
 * [`base`](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/base)
+* [`core`](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/core)
+* [`download_file`](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/download_file) (download single file)
 * [`files`](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/files) (for quick and dirty file management)
 * [`local_system_user`](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/local_system_user) (for local system user creation)
 
