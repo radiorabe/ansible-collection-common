@@ -19,12 +19,13 @@ None
 
 ## Example Playbook
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
 ```yaml
 - hosts: all
   roles:
     - download_file
+      vars:
+        download_file_url: https://rabe.ch/wp-content/uploads/2016/07/favicon.ico
+        download_file_destination: /tmp/
 ```
 
 ## License
