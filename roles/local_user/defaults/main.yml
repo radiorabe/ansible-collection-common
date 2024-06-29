@@ -1,0 +1,8 @@
+# defaults for radiorabe.common.local_user
+
+local_user_additional_groups: ''
+local_user_create_home: false
+local_user_groupname: ''
+local_user_home_directory: ''
+local_user_shell: ''
+local_user_system: false
