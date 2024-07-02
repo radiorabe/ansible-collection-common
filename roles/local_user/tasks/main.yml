@@ -1,0 +1,51 @@
+---
+# tasks file for radiorabe.common.local_user
+
+- name: 'Get {{ local_user_username }} user info'
+  ansible.builtin.getent:
+    database: passwd
+    key: '{{ local_user_username }}'
+  ignore_errors: true
+
+- name: 'Get {{ local_user_groupname }} group'
+  ansible.builtin.getent:
+    database: group
+    key: '{{ local_user_groupname }}'
+  ignore_errors: true
+
+- name: 'Add group when does not exist'
+  become: true
+  command: groupadd {{ local_user_groupname }}
+  when: 
+    ansible_facts.getent_group is undefined and
+    local_user_groupname != ''
+
+- name: 'Add user and group when does not exist'
+  become: true
+  ansible.builtin.command:
+    argv: "{{ cmd_argv |
+      zip(cmd_argv_switch) | 
+      selectattr('1') | 
+      map(attribute='0') | list  }}"
+  vars:
+    cmd_argv:
+      - 'useradd'
+      - '--create-home'
+      - '--groups="{{ local_user_additional_groups }}"'
+      - '--gid="{{ local_user_groupname }}"'
+      - '--home-dir="{{ local_user_home_directory }}"'
+      - '--shell="{{ local_user_shell }}"'
+      - '--system'
+      - '--add-subids-for-system'
+      - '{{ local_user_username }}'
+    cmd_argv_switch:
+      - true
+      - '{{ local_user_create_home }}'
+      - '{{ local_user_additional_groups != "" }}'
+      - '{{ local_user_groupname != "" }}'
+      - '{{ local_user_home_directory != "" }}'
+      - '{{ local_user_shell != "" }}'
+      - '{{ local_user_system }}'
+      - '{{ local_user_system }}'
+      - true
+  when: ansible_facts.getent_passwd is undefined
