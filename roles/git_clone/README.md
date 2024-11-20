@@ -1,4 +1,4 @@
-# Ansible Role - radiorabe.common.files
+# Ansible Role - radiorabe.common.git_clone
 
 Git clone using [`ansible.builtin.git module`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/git_module.html).
 
