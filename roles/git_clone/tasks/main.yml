@@ -18,3 +18,4 @@
   ansible.builtin.git: '{{ item }}'
   with_items: '{{ radiorabe_git_clone }}'
   when: radiorabe_git_local_clone == false
+  
