@@ -12,6 +12,7 @@ None
 | -------- | ------- | ----------- |
 | `download_file_url` | `https://rabe.ch/wp-content/uploads/2016/07/favicon.ico` | URL of file to be downloaded. |
 | `download_file_destination` | `/tmp/` | Downloaded file detination path on remote host. |
+| `download_file_locally` | `false` | Download file to Ansible host (127.0.0.1) instead of remote host. |
 
 ## Dependencies
 
@@ -26,6 +27,7 @@ None
       vars:
         download_file_url: https://rabe.ch/wp-content/uploads/2016/07/favicon.ico
         download_file_destination: /tmp/
+        download_file_locally: false
 ```
 
 ## License
