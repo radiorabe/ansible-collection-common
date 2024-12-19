@@ -1,7 +1,8 @@
+---
 # defaults for radiorabe.common.base
 
-radiorabe_base_mail_noreply: 'noreply@{{ radiorabe_core_hostname }}'
+radiorabe_base_mail_noreply: "noreply@{{ radiorabe_core_hostname }}"
 
-radiorabe_base_foreman_host: 'foreman.service.{{ radiorabe_core_int_hostname }}'
+radiorabe_base_foreman_host: "foreman.service.{{ radiorabe_core_int_hostname }}"
 
-radiorabe_base_foreman_url: 'https://{{ radiorabe_base_foreman_host }}'
+radiorabe_base_foreman_url: "https://{{ radiorabe_base_foreman_host }}"

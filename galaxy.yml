@@ -1,3 +1,4 @@
+---
 namespace: radiorabe
 name: common
 version: 0.0.0
@@ -10,6 +11,8 @@ tags:
   - radiorabe
   - foreman
   - common
+  - infrastructure
+  - tools
 dependencies: {}
 repository: https://github.com/radiorabe/ansible-collection-common
 documentation: https://github.com/radiorabe/ansible-collection-common/blob/main/README.md

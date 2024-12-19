@@ -3,6 +3,6 @@
 
 - name: RaBe Base | set base facts
   ansible.builtin.set_fact:
-    radiorabe_base_mail_noreply: '{{ radiorabe_base_mail_noreply }}'
-    radiorabe_base_foreman_host: '{{ radiorabe_base_foreman_host }}'
-    radiorabe_base_foreman_url: '{{ radiorabe_base_foreman_url }}'
+    radiorabe_base_mail_noreply: "{{ radiorabe_base_mail_noreply }}"
+    radiorabe_base_foreman_host: "{{ radiorabe_base_foreman_host }}"
+    radiorabe_base_foreman_url: "{{ radiorabe_base_foreman_url }}"

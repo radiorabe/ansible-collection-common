@@ -1,5 +1,6 @@
+---
 # defaults for radiorabe.common.git
 
 radiorabe_git_clone: []
 radiorabe_git_local_clone: false
-radiorabe_git_clone_remote_dest: ''
+radiorabe_git_clone_remote_dest: ""
