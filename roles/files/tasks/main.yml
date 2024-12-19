@@ -1,10 +1,10 @@
 ---
 # tasks file for radiorabe.common.files
 
-- name: 'RaBe Base : File : Manage files'
-  ansible.builtin.file: '{{ item }}'
-  with_items: '{{ radiorabe_files }}'
+- name: "RaBe Base : File : Manage files"
+  ansible.builtin.file: "{{ item }}" # noqa: args
+  with_items: "{{ radiorabe_files }}"
 
-- name: 'RaBe Base : File : Copy files'
-  ansible.builtin.copy: '{{ item }}'
-  with_items: '{{ radiorabe_copies }}'
+- name: "RaBe Base : File : Copy files"
+  ansible.builtin.copy: "{{ item }}" # noqa: risky-file-permissions
+  with_items: "{{ radiorabe_copies }}"

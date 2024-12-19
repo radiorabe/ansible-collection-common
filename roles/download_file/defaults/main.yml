@@ -2,4 +2,5 @@
 # defaults file for download_file
 download_file_url: https://rabe.ch/wp-content/uploads/2016/07/favicon.ico
 download_file_destination: /tmp/
+download_file_mode: "0644"
 download_file_locally: false
