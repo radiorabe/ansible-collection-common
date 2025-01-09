@@ -10,5 +10,7 @@
   ansible.builtin.copy:
     src: "{{ item.dest }}/"
     dest: "{{ radiorabe_git_clone_remote_dest }}/"
+    owner: "{{ radiorabe_git_clone_remote_owner | default(omit) }}"
+    group: "{{ radiorabe_git_clone_remote_group | default(omit) }}"
   with_items: "{{ radiorabe_git_clone }}"
   when: radiorabe_git_local_clone

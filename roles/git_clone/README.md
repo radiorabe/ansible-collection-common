@@ -15,6 +15,8 @@ None
 | `radiorabe_git_clone` | `[]` | Git repository connection details. See [`ansible.builtin.git module`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/git_module.html) for details. |
 | `radiorabe_git_local_clone` | `false` | Clone repository locally on Ansible host. |
 | `radiorabe_git_clone_remote_dest` | `''` | Destination of repository clone if `radiorabe_git_local_clone` set to `true`. |
+| `radiorabe_git_clone_remote_user` | `null` | Name of the user that should own the filesystem object, as would be fed to chown. |
+| `radiorabe_git_clone_remote_group` | `null` | Name of the group that should own the filesystem object, as would be fed to chown. |
 
 ## Dependencies
 
