@@ -2,7 +2,9 @@
 
 # These are very low level, so we keep their wrong names for now
 roles/base/defaults/main.yml var-naming[no-role-prefix]
+roles/base/tasks/main.yml var-naming[no-role-prefix]
 roles/core/defaults/main.yml var-naming[no-role-prefix]
+roles/core/tasks/main.yml var-naming[no-role-prefix]
 roles/files/defaults/main.yml var-naming[no-role-prefix]
 
 # This can probably be renamed without as much effort
@@ -17,4 +19,3 @@ roles/local_user/tasks/main.yml no-changed-when
 
 # We should start writing changelogs at some point
 galaxy.yml galaxy[no-changelog]
-
