@@ -4,6 +4,7 @@ Contains common roles and playbooks.
 
 ## Roles
 
+* [`rabe_backup`](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/rabe_backup) (required configuration on host for [rabe backup](https://github.com/radiorabe/backup))
 * [`base`](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/base)
 * [`core`](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/core)
 * [`download_file`](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/download_file) (download single file)

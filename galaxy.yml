@@ -5,6 +5,7 @@ version: 0.0.0
 readme: README.md
 authors:
   - Lucas Bickel <@hairmare>
+  - Simon Nussbaum <@smirta>
 description: RaBe Ansible Roles and Playbooks for use with Foreman
 license_file: LICENSE
 tags:
