@@ -1,4 +1,5 @@
-# roles/rabe_backup/tasks/main.yml
+---
+# tasks file for radiorabe.common.rabe_backup
 
 - name: Add specified SSH public key to user's known_hosts
   ansible.builtin.known_hosts:
