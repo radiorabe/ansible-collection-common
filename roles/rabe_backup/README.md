@@ -1,4 +1,4 @@
-# rabe_backup
+# Ansible Role - radiorabe.common.rabe_backup
 
 This role configures a host to be integrated with the **radiorabe backup solution**.
 
@@ -9,6 +9,10 @@ It is responsible for:
 
 This role is part of the overall backup infrastructure detailed here:
 **[radiorabe/backup](https://github.com/radiorabe/backup)**
+
+## Requirements
+
+None
 
 ## Role Variables
 
@@ -38,3 +42,8 @@ This role is part of the overall backup infrastructure detailed here:
         rabe_backup_exclude_paths:
           - /var/log/app.log
           - /tmp
+```
+
+## License
+
+This role is free software: you can redistribute it and/or modify it under the terms of the GNU Affero General Public License as published by the Free Software Foundation, version 3 of the License.
