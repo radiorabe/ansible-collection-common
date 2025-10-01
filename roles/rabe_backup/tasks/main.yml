@@ -3,7 +3,7 @@
 
 - name: Add specified SSH public key to user's known_hosts
   ansible.builtin.known_hosts:
-    user: "{{ rabe_backup_ssh_user }}"
+    name: "{{ rabe_backup_ssh_user }}"
     key: "{{ rabe_backup_ssh_known_host_key }}"
     state: present
   # This task is only executed if both the username and the key are defined
