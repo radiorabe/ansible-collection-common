@@ -1,0 +1,34 @@
+---
+# tasks file for radiorabe.common.rabe_backup
+
+- name: Add specified SSH public key to user's known_hosts
+  ansible.builtin.known_hosts:
+    name: "{{ rabe_backup_ssh_user }}"
+    key: "{{ rabe_backup_ssh_known_host_key }}"
+    state: present
+  # This task is only executed if both the username and the key are defined
+  when:
+    - rabe_backup_ssh_user is defined and rabe_backup_ssh_user | length > 0
+    - rabe_backup_ssh_known_host_key is defined and rabe_backup_ssh_known_host_key | length > 0
+
+- name: Create /etc/rabe-backup.include file from array
+  ansible.builtin.copy:
+    # Join the array items with a newline and ensure a final newline
+    content: "{{ rabe_backup_include_paths | join('\n') + '\n' }}"
+    dest: /etc/rabe-backup.include
+    owner: root
+    group: root
+    mode: '0644'
+  # Only create the file if the include array is not empty
+  when: rabe_backup_include_paths | length > 0
+
+- name: Create /etc/rabe-backup.exclude file from array
+  ansible.builtin.copy:
+    # Join the array items with a newline and ensure a final newline
+    content: "{{ rabe_backup_exclude_paths | join('\n') + '\n' }}"
+    dest: /etc/rabe-backup.exclude
+    owner: root
+    group: root
+    mode: '0644'
+  # Only create the file if the exclude array is not empty
+  when: rabe_backup_exclude_paths | length > 0
