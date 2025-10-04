@@ -18,8 +18,8 @@ None
 
 | Variable | Default Value | Description |
 | :--- | :--- | :--- |
-| `rabe_backup_ssh_user` | `~` (undefined) | The **username** of the account whose known_hosts file will be modified (e.g., `root` or `backup_user`). |
-| `rabe_backup_ssh_known_host_key` | `~` (undefined) | The **SSH public key entry** to add. Must be a single string in the standard `known_hosts` format (e.g., `hostname,ip_address key_type KEY_CONTENT...`). |
+| `rabe_backup_ssh_user` | `''` (empty string) | The **username** of the account whose known_hosts file will be modified (e.g., `root` or `backup_user`). |
+| `rabe_backup_ssh_known_host_key` | `''` (empty string) | The **SSH public key entry** to add. Must be a single string in the standard `known_hosts` format (e.g., `hostname,ip_address key_type KEY_CONTENT...`). |
 | `rabe_backup_include_paths` | `[]` (empty list) | An **array of absolute file/directory paths** to be included. Written to `/etc/rabe-backup.include`. The file is only created if this list is not empty. |
 | `rabe_backup_exclude_paths` | `[]` (empty list) | An **array of absolute file/directory paths** to be excluded. Written to `/etc/rabe-backup.exclude`. The file is only created if this list is not empty. |
 
