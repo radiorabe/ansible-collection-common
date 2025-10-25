@@ -1,0 +1,6 @@
+---
+# tasks file for radiorabe.common.package
+
+- name: "RaBe Common : Package : Manage package installations"
+  ansible.builtin.package: "{{ item }}" # noqa: args
+  with_items: "{{ radiorabe_packages }}"
