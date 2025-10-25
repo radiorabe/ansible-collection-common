@@ -1,0 +1,21 @@
+---
+# tasks file for radiorabe.common.install_selinux_modules
+
+- name: Download selinux modules
+  ansible.builtin.include_role:
+    name: radiorabe.common.download_file
+  vars:
+    download_file_url: "{{ item }}"
+    download_file_destination: "{{ install_selinux_modules_download_file_destination }}"
+    download_file_mode: "{{ install_selinux_modules_download_file_mode }}"
+    download_file_locally: "{{ install_selinux_modules_download_file_locally }}"
+  with_items: "{{ install_selinux_modules_download_file_urls }}"
+
+- name: Install selinux modules
+  ansible.builtin.include_role:
+    name: redhat.rhel_system_roles.selinux
+  vars:
+    selinux_modules:
+      - path: "./{{ item | basename }}"
+        state: enabled
+  with_items: "{{ install_selinux_modules_download_file_urls }}"

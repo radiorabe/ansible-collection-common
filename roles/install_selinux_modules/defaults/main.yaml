@@ -1,0 +1,7 @@
+---
+# defaults for radiorabe.common.install_selinux_modules
+
+install_selinux_modules_download_file_urls: []
+install_selinux_modules_download_file_destination: ./
+install_selinux_modules_download_file_mode: "0600"
+install_selinux_modules_download_file_locally: true
