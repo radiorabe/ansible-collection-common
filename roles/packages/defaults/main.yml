@@ -1,4 +1,4 @@
 ---
 # defaults for radiorabe.common.package
 
-radiorabe_packages: [] # noqa: var-naming
+packages_packages: []

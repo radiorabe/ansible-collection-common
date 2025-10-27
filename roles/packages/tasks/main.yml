@@ -3,4 +3,4 @@
 
 - name: "RaBe Common : Package : Manage package installations"
   ansible.builtin.package: "{{ item }}" # noqa: args
-  with_items: "{{ radiorabe_packages }}"
+  with_items: "{{ packages_packages }}"
