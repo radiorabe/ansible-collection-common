@@ -1,4 +1,4 @@
-# Ansible Role - radiorabe.common.package
+# Ansible Role - radiorabe.common.packages
 
 Manage packages using [`ansible.builtin.package`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/package_module.html).
 
@@ -8,9 +8,9 @@ None
 
 ## Role Variables
 
-| Variable             | Default | Description         |
-| -------------------- | ------- | ------------------- |
-| `radiorabe_packages` | `[]`    | Packages to manage. |
+| Variable            | Default | Description         |
+| ------------------- | ------- | ------------------- |
+| `packages_packages` | `[]`    | Packages to manage. |
 
 ## Dependencies
 
@@ -23,7 +23,7 @@ None
   roles:
     - role: radiorabe.common.packages
       vars:
-        radiorabe_packages:
+        packages_packages:
           name: git
           state: present
 ```
