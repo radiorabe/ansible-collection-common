@@ -11,6 +11,7 @@ Contains common roles and playbooks.
 * [`git_clone`](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/git_clone) (clone git repository)
 * [`local_user`](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/local_user) (for local user creation)
 * [`rabe_backup`](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/rabe_backup) (required configuration on host for [rabe backup](https://github.com/radiorabe/backup))
+* [`selinux_modules`](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/selinux_modules) (download and install selinux modules)
 
 ## License
 
