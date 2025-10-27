@@ -10,7 +10,7 @@ Contains common roles and playbooks.
 * [`files`](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/files) (for quick and dirty file management)
 * [`git_clone`](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/git_clone) (clone git repository)
 * [`local_user`](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/local_user) (for local user creation)
-* [`package`](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/local_user) (manage installed packages)
+* [`packages`](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/packages) (manage installed packages)
 * [`rabe_backup`](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/rabe_backup) (required configuration on host for [rabe backup](https://github.com/radiorabe/backup))
 
 ## License
