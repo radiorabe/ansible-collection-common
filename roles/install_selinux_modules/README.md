@@ -25,9 +25,9 @@ This role downloads and installs selinux modules. It includes the roles [radiora
     - role: install_selinux_modules
       vars:
         install_selinux_modules_download_file_urls:
-          - https://radiorabe-4ever.ch/modules/module1.pp
-          - https://radiorabe-4ever.ch/modules/module2.cil
-          - https://radiorabe-4ever.ch/modules/module3.pp
+          - url: https://example.org/modules/module1.pp
+          - url: https://example.org/modules/module2.cil
+          - url: https://example.org/modules/module3.pp
 ```
 
 ## License
