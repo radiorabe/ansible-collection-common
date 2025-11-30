@@ -17,4 +17,5 @@ galaxy_info:
     - foreman
     - common
     - package
+    - packages
 dependencies: []
