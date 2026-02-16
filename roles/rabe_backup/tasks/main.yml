@@ -18,7 +18,7 @@
     dest: /etc/rabe-backup.include
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
   # Only create the file if the include array is not empty
   when: rabe_backup_include_paths | length > 0
 
@@ -29,6 +29,6 @@
     dest: /etc/rabe-backup.exclude
     owner: root
     group: root
-    mode: '0644'
+    mode: "0644"
   # Only create the file if the exclude array is not empty
   when: rabe_backup_exclude_paths | length > 0
