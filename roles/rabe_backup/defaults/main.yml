@@ -4,17 +4,16 @@
 # --- SSH Known Hosts Configuration ---
 # The username of the account whose known_hosts file will be modified.
 # The task is skipped if this value is an empty string.
-rabe_backup_ssh_user: ''
+rabe_backup_ssh_user: ""
 
 # The public key entry to add. Must be in known_hosts format (e.g., 'host.example.com,192.0.2.1 ssh-rsa AAAA...').
 # The task is skipped if this value is an empty string.
-rabe_backup_ssh_known_host_key: ''
+rabe_backup_ssh_known_host_key: ""
 
 # --- Backup Include/Exclude Configuration ---
 # Array of paths (one path per list item) to be written to /etc/rabe-backup.include.
 # The file is only created if this list contains entries.
 rabe_backup_include_paths: []
-
 # Array of paths (one path per list item) to be written to /etc/rabe-backup.exclude.
 # The file is only created if this list contains entries.
 rabe_backup_exclude_paths: []

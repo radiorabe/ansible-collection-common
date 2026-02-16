@@ -18,6 +18,5 @@
   vars:
     selinux_modules:
       - path: "{{ item.url | basename }}"
-        state: "{{ item.state |  default('enabled') }}"
+        state: "{{ item.state | default('enabled') }}"
   with_items: "{{ selinux_modules_download_file_urls }}"
-
