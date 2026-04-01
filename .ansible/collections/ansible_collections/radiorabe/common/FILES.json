@@ -204,6 +204,13 @@
    "format": 1
   },
   {
+   "name": ".gitignore",
+   "ftype": "file",
+   "chksum_type": "sha256",
+   "chksum_sha256": "1d7dfe4d7d84086c33224f057545493f7a93cce1bc12d7fb138661d7381da8d3",
+   "format": 1
+  },
+  {
    "name": "LICENSE",
    "ftype": "file",
    "chksum_type": "sha256",
