@@ -1,0 +1,65 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Stat backup include config file
+      ansible.builtin.stat:
+        path: /etc/rabe-backup.include
+      register: include_file
+
+    - name: Stat backup exclude config file
+      ansible.builtin.stat:
+        path: /etc/rabe-backup.exclude
+      register: exclude_file
+
+    - name: Read backup include file content
+      ansible.builtin.slurp:
+        src: /etc/rabe-backup.include
+      register: include_content
+
+    - name: Read backup exclude file content
+      ansible.builtin.slurp:
+        src: /etc/rabe-backup.exclude
+      register: exclude_content
+
+    - name: Assert include file exists with correct permissions
+      ansible.builtin.assert:
+        that:
+          - include_file.stat.exists
+          - include_file.stat.mode == '0644'
+          - include_file.stat.pw_name == 'root'
+          - include_file.stat.gr_name == 'root'
+        success_msg: "Backup include file exists with correct ownership and permissions"
+        fail_msg: "Backup include file check failed"
+
+    - name: Assert include file contains expected paths
+      ansible.builtin.assert:
+        that:
+          - "'/etc' in (include_content.content | b64decode)"
+          - "'/var/lib/data' in (include_content.content | b64decode)"
+          - "'/home' in (include_content.content | b64decode)"
+          - "'/opt/app' in (include_content.content | b64decode)"
+          - "(include_content.content | b64decode).endswith('\n')"
+        success_msg: "Backup include file contains all expected paths"
+        fail_msg: "Backup include file is missing expected paths"
+
+    - name: Assert exclude file exists with correct permissions
+      ansible.builtin.assert:
+        that:
+          - exclude_file.stat.exists
+          - exclude_file.stat.mode == '0644'
+          - exclude_file.stat.pw_name == 'root'
+          - exclude_file.stat.gr_name == 'root'
+        success_msg: "Backup exclude file exists with correct ownership and permissions"
+        fail_msg: "Backup exclude file check failed"
+
+    - name: Assert exclude file contains expected paths
+      ansible.builtin.assert:
+        that:
+          - "'/home/*/Downloads' in (exclude_content.content | b64decode)"
+          - "'/home/*/.cache' in (exclude_content.content | b64decode)"
+          - "'/tmp' in (exclude_content.content | b64decode)"
+          - "'/var/tmp' in (exclude_content.content | b64decode)"
+          - "(exclude_content.content | b64decode).endswith('\n')"
+        success_msg: "Backup exclude file contains all expected paths"
+        fail_msg: "Backup exclude file is missing expected paths"

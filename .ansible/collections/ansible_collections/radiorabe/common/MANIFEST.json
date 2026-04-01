@@ -1,0 +1,35 @@
+{
+ "collection_info": {
+  "namespace": "radiorabe",
+  "name": "common",
+  "version": "0.0.0",
+  "authors": [
+   "Lucas Bickel <@hairmare>",
+   "Simon Nussbaum <@smirta>"
+  ],
+  "readme": "README.md",
+  "tags": [
+   "radiorabe",
+   "foreman",
+   "common",
+   "infrastructure",
+   "tools"
+  ],
+  "description": "RaBe Ansible Roles and Playbooks for use with Foreman",
+  "license": [],
+  "license_file": "LICENSE",
+  "dependencies": {},
+  "repository": "https://github.com/radiorabe/ansible-collection-common",
+  "documentation": "https://github.com/radiorabe/ansible-collection-common/blob/main/README.md",
+  "homepage": "https://github.com/radiorabe/ansible-collection-common",
+  "issues": "https://github.com/radiorabe/ansible-collection-common/issues"
+ },
+ "file_manifest_file": {
+  "name": "FILES.json",
+  "ftype": "file",
+  "chksum_type": "sha256",
+  "chksum_sha256": "0cc8a9364fd2881cdc06f0c153b43c490ffab297460eb0779b9ef8caa937bdb8",
+  "format": 1
+ },
+ "format": 1
+}

@@ -1,0 +1,31 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Stat remote-downloaded file
+      ansible.builtin.stat:
+        path: /tmp/test_remote_favicon.ico
+      register: remote_file
+
+    - name: Stat restricted-permissions file
+      ansible.builtin.stat:
+        path: /tmp/test_restricted_favicon.ico
+      register: restricted_file
+
+    - name: Assert remote-downloaded file exists with correct permissions
+      ansible.builtin.assert:
+        that:
+          - remote_file.stat.exists
+          - remote_file.stat.mode == '0644'
+          - remote_file.stat.size > 0
+        success_msg: "Remote file downloaded successfully with mode 0644"
+        fail_msg: "Remote file download or permissions check failed"
+
+    - name: Assert restricted file exists with correct permissions
+      ansible.builtin.assert:
+        that:
+          - restricted_file.stat.exists
+          - restricted_file.stat.mode == '0600'
+          - restricted_file.stat.size > 0
+        success_msg: "Restricted file downloaded successfully with mode 0600"
+        fail_msg: "Restricted file download or permissions check failed"

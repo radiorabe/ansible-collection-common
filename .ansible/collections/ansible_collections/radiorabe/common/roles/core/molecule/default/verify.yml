@@ -1,0 +1,37 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Check that all core facts are defined
+      ansible.builtin.assert:
+        that:
+          - radiorabe_core_hostname is defined
+          - radiorabe_core_int_hostname is defined
+          - radiorabe_core_realm is defined
+          - radiorabe_core_admin_name is defined
+          - radiorabe_core_admin_mail is defined
+        success_msg: "All core facts are defined"
+        fail_msg: "One or more core facts are missing"
+
+    - name: Check default fact values
+      ansible.builtin.assert:
+        that:
+          - radiorabe_core_hostname == 'rabe.ch'
+          - radiorabe_core_int_hostname == 'int.rabe.ch'
+          - radiorabe_core_realm == 'INT.RABE.CH'
+          - radiorabe_core_admin_name == 'RaBe IT-Reaktion'
+          - radiorabe_core_admin_mail == 'it@rabe.ch'
+        success_msg: "Core facts have correct default values"
+        fail_msg: "Core facts have unexpected default values"
+
+    - name: Check int_hostname is derived from hostname
+      ansible.builtin.assert:
+        that:
+          - radiorabe_core_int_hostname == 'int.' + radiorabe_core_hostname
+        success_msg: "int_hostname is correctly derived from hostname"
+
+    - name: Check realm is uppercase of int_hostname
+      ansible.builtin.assert:
+        that:
+          - radiorabe_core_realm == radiorabe_core_int_hostname | upper
+        success_msg: "realm is correctly uppercased from int_hostname"

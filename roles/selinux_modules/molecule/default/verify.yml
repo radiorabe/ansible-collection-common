@@ -1,0 +1,17 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Stat downloaded SELinux module file
+      ansible.builtin.stat:
+        path: /tmp/favicon.ico
+      register: downloaded_module
+
+    - name: Assert enabled module was downloaded
+      ansible.builtin.assert:
+        that:
+          - downloaded_module.stat.exists
+          - downloaded_module.stat.mode == '0600'
+          - downloaded_module.stat.size > 0
+        success_msg: "SELinux module file downloaded successfully with mode 0600"
+        fail_msg: "SELinux module file was not downloaded or has wrong permissions"

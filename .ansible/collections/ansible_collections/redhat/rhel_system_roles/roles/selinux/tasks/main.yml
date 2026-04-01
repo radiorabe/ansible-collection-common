@@ -1,0 +1,5 @@
+---
+- name: Manage SELinux modules
+  ansible.builtin.debug:
+    msg: "Managing SELinux module: {{ item.path }} state={{ item.state | default('enabled') }}"
+  loop: "{{ selinux_modules | default([]) }}"

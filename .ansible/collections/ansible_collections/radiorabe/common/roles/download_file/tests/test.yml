@@ -1,0 +1,6 @@
+---
+- name: Test download_file role
+  hosts: localhost
+  remote_user: root
+  roles:
+    - download_file

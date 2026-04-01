@@ -1,0 +1,34 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Check that all base facts are defined
+      ansible.builtin.assert:
+        that:
+          - radiorabe_base_mail_noreply is defined
+          - radiorabe_base_foreman_host is defined
+          - radiorabe_base_foreman_url is defined
+        success_msg: "All base facts are defined"
+        fail_msg: "One or more base facts are missing"
+
+    - name: Check default base fact values
+      ansible.builtin.assert:
+        that:
+          - radiorabe_base_mail_noreply == 'noreply@rabe.ch'
+          - radiorabe_base_foreman_host == 'foreman.service.int.rabe.ch'
+          - radiorabe_base_foreman_url == 'https://foreman.service.int.rabe.ch'
+        success_msg: "Base facts have correct default values"
+        fail_msg: "Base facts have unexpected default values"
+
+    - name: Check mail_noreply references core hostname
+      ansible.builtin.assert:
+        that:
+          - radiorabe_core_hostname in radiorabe_base_mail_noreply
+        success_msg: "mail_noreply correctly references core hostname"
+
+    - name: Check foreman_url uses foreman_host
+      ansible.builtin.assert:
+        that:
+          - radiorabe_base_foreman_host in radiorabe_base_foreman_url
+          - radiorabe_base_foreman_url.startswith('https://')
+        success_msg: "foreman_url correctly constructed from foreman_host"

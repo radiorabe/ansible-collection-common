@@ -1,0 +1,23 @@
+---
+- name: Prepare - Install collection under test
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Ensure ansible_collections/radiorabe namespace directory exists
+      ansible.builtin.file:
+        path: "{{ lookup('env', 'HOME') }}/.ansible/collections/ansible_collections/radiorabe"
+        state: directory
+        mode: "0755"
+
+    - name: Get absolute path to collection root
+      ansible.builtin.command:
+        cmd: "realpath {{ lookup('env', 'MOLECULE_SCENARIO_DIRECTORY') }}/../../../../"
+      register: collection_root
+      changed_when: false
+
+    - name: Symlink collection to expected FQCN path
+      ansible.builtin.file:
+        src: "{{ collection_root.stdout }}"
+        dest: "{{ lookup('env', 'HOME') }}/.ansible/collections/ansible_collections/radiorabe/common"
+        state: link
+        force: true

@@ -1,0 +1,36 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+  tasks:
+    - name: Apply files role to manage files and directories
+      ansible.builtin.include_role:
+        name: radiorabe.common.files
+      vars:
+        radiorabe_files:
+          - path: /tmp/molecule_test_dir
+            state: directory
+            mode: "0755"
+            owner: root
+            group: root
+          - path: /tmp/molecule_test_dir/subdir
+            state: directory
+            mode: "0750"
+            owner: root
+            group: root
+          - path: /tmp/molecule_test_dir/test_file.txt
+            state: touch
+            mode: "0644"
+            owner: root
+            group: root
+        radiorabe_copies:
+          - content: "molecule test content\n"
+            dest: /tmp/molecule_test_dir/copy_test.txt
+            mode: "0644"
+            owner: root
+            group: root
+          - content: "restricted content\n"
+            dest: /tmp/molecule_test_dir/restricted.txt
+            mode: "0600"
+            owner: root
+            group: root

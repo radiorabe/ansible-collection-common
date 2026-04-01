@@ -1,0 +1,7 @@
+namespace: redhat
+name: rhel_system_roles
+version: 1.0.0
+readme: README.md
+authors:
+  - Red Hat, Inc.
+description: RHEL System Roles (local mock for development/linting)
