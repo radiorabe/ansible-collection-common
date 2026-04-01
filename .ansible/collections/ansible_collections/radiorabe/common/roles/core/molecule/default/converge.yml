@@ -1,7 +1,0 @@
----
-- name: Converge
-  hosts: all
-  tasks:
-    - name: Apply core role
-      ansible.builtin.include_role:
-        name: radiorabe.common.core

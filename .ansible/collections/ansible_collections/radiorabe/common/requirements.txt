@@ -1,6 +1,0 @@
-# Python requirements for development and molecule testing
-ansible-lint>=24.0
-molecule>=24.0
-molecule-plugins[podman]>=23.5
-pytest>=8.0
-pytest-testinfra>=10.1
