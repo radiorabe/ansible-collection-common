@@ -71,7 +71,7 @@ ansible-lint
 
 ## Dependencies
 
-- [`redhat.rhel_system_roles`](https://galaxy.ansible.com/ui/repo/published/redhat/rhel_system_roles/) — used by the `selinux_modules` role
+- `redhat.rhel_system_roles` — used by the `selinux_modules` role
 
 ## License
 
