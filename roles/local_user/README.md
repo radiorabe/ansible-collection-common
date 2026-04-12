@@ -5,7 +5,7 @@ Idempotent management of local users and groups using `ansible.builtin.user` and
 ## Requirements
 
 - Enterprise Linux 9+
-- Ansible Core >=2.16.0
+- Ansible Core >=2.14.0
 
 ## Role Variables
 

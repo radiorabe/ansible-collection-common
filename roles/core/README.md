@@ -5,7 +5,7 @@ Defines a baseline set of variables for use in other roles. This role acts as th
 ## Requirements
 
 - Enterprise Linux 9+
-- Ansible Core >=2.16.0
+- Ansible Core >=2.14.0
 
 ## Role Variables
 

@@ -6,7 +6,7 @@ Common Ansible roles and playbooks for [Radio Bern RaBe](https://rabe.ch) infras
 
 ## Requirements
 
-- Ansible Core `>=2.16.0`
+- Ansible Core `>=2.14.0`
 - Enterprise Linux 9+ (RHEL, AlmaLinux, Rocky Linux, Oracle Linux, …)
 - Python 3.9+ on the control node
 

@@ -5,7 +5,7 @@ Defines minimal OS-agnostic facts that are derived from core variables. Requires
 ## Requirements
 
 - Enterprise Linux 9+
-- Ansible Core >=2.16.0
+- Ansible Core >=2.14.0
 - Role `radiorabe.common.core` applied before this role
 
 ## Role Variables

@@ -5,7 +5,7 @@ Clones one or more git repositories to a remote host or the Ansible control node
 ## Requirements
 
 - Enterprise Linux 9+
-- Ansible Core >=2.16.0
+- Ansible Core >=2.14.0
 - `git` package installed on the target host (or control node for local clones)
 
 ## Role Variables

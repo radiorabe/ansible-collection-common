@@ -9,7 +9,7 @@ Internally this role delegates to:
 ## Requirements
 
 - Enterprise Linux 9+
-- Ansible Core >=2.16.0
+- Ansible Core >=2.14.0
 - `redhat.rhel_system_roles` collection (`>=1.0.0`)
 
 Install the collection dependency:

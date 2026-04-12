@@ -5,7 +5,7 @@ Downloads a single file to a remote host or the Ansible control node using `ansi
 ## Requirements
 
 - Enterprise Linux 9+
-- Ansible Core >=2.16.0
+- Ansible Core >=2.14.0
 
 ## Role Variables
 
