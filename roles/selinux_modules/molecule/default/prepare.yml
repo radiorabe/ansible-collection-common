@@ -15,12 +15,16 @@
       register: collection_root
       changed_when: false
 
+    - name: Remove existing collection path to allow symlinking
+      ansible.builtin.file:
+        path: "{{ lookup('env', 'HOME') }}/.ansible/collections/ansible_collections/radiorabe/common"
+        state: absent
+
     - name: Symlink collection to expected FQCN path
       ansible.builtin.file:
         src: "{{ collection_root.stdout }}"
         dest: "{{ lookup('env', 'HOME') }}/.ansible/collections/ansible_collections/radiorabe/common"
         state: link
-        force: true
 
     - name: Create redhat.rhel_system_roles collection structure (mock)
       ansible.builtin.file:
