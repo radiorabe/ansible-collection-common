@@ -18,6 +18,7 @@
             owner: root
             group: root
         radiorabe_copies:
+          # Empty file: tests idempotent file creation with correct permissions
           - content: ""
             dest: /tmp/molecule_test_dir/test_file.txt
             mode: "0644"
