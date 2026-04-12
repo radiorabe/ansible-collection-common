@@ -2,44 +2,44 @@
 - name: Verify
   hosts: all
   tasks:
-    - name: Look up system user in passwd database
-      ansible.builtin.getent:
-        database: passwd
-        key: mol_sysuser
+    - name: Check system user exists
+      ansible.builtin.command: id mol_sysuser
+      changed_when: false
+      register: sysuser_check
 
-    - name: Look up system group in group database
-      ansible.builtin.getent:
-        database: group
-        key: mol_sysgroup
+    - name: Check system group exists
+      ansible.builtin.command: getent group mol_sysgroup
+      changed_when: false
+      register: sysgroup_check
 
-    - name: Look up regular user in passwd database
-      ansible.builtin.getent:
-        database: passwd
-        key: mol_reguser
+    - name: Check regular user exists
+      ansible.builtin.command: id mol_reguser
+      changed_when: false
+      register: reguser_check
 
-    - name: Look up group-member user in passwd database
-      ansible.builtin.getent:
-        database: passwd
-        key: mol_groupuser
+    - name: Check additional-group user exists
+      ansible.builtin.command: id mol_groupuser
+      changed_when: false
+      register: groupuser_check
 
-    - name: Assert system user exists
+    - name: Assert system user was created
       ansible.builtin.assert:
         that:
-          - "'mol_sysuser' in ansible_facts.getent_passwd"
+          - sysuser_check.rc == 0
         success_msg: "System user mol_sysuser exists"
         fail_msg: "System user mol_sysuser was not created"
 
-    - name: Assert system group exists
+    - name: Assert system group was created
       ansible.builtin.assert:
         that:
-          - "'mol_sysgroup' in ansible_facts.getent_group"
+          - sysgroup_check.rc == 0
         success_msg: "System group mol_sysgroup exists"
         fail_msg: "System group mol_sysgroup was not created"
 
-    - name: Assert regular user exists
+    - name: Assert regular user was created
       ansible.builtin.assert:
         that:
-          - "'mol_reguser' in ansible_facts.getent_passwd"
+          - reguser_check.rc == 0
         success_msg: "Regular user mol_reguser exists"
         fail_msg: "Regular user mol_reguser was not created"
 
@@ -56,9 +56,9 @@
         success_msg: "Home directory for mol_reguser exists"
         fail_msg: "Home directory for mol_reguser was not created"
 
-    - name: Assert additional-group user exists
+    - name: Assert additional-group user was created
       ansible.builtin.assert:
         that:
-          - "'mol_groupuser' in ansible_facts.getent_passwd"
+          - groupuser_check.rc == 0
         success_msg: "Group-member user mol_groupuser exists"
         fail_msg: "Group-member user mol_groupuser was not created"

@@ -1,9 +1,0 @@
----
-- name: Prepare - Install sudo on instances
-  hosts: all
-  gather_facts: false
-  tasks:
-    - name: Install sudo
-      ansible.builtin.dnf:
-        name: sudo
-        state: present

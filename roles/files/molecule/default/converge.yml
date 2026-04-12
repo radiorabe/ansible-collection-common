@@ -1,7 +1,6 @@
 ---
 - name: Converge
   hosts: all
-  become: true
   tasks:
     - name: Apply files role to manage files and directories
       ansible.builtin.include_role:
@@ -18,12 +17,12 @@
             mode: "0750"
             owner: root
             group: root
-          - path: /tmp/molecule_test_dir/test_file.txt
-            state: touch
+        radiorabe_copies:
+          - content: ""
+            dest: /tmp/molecule_test_dir/test_file.txt
             mode: "0644"
             owner: root
             group: root
-        radiorabe_copies:
           - content: "molecule test content\n"
             dest: /tmp/molecule_test_dir/copy_test.txt
             mode: "0644"

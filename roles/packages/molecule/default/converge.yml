@@ -1,7 +1,6 @@
 ---
 - name: Converge
   hosts: all
-  become: true
   tasks:
     - name: Apply packages role to install packages
       ansible.builtin.include_role:

@@ -3,13 +3,7 @@
   hosts: all
   gather_facts: false
   tasks:
-    - name: Install sudo
-      ansible.builtin.dnf:
-        name: sudo
-        state: present
-
     - name: Install git
-      become: true
       ansible.builtin.dnf:
         name: git
         state: present

@@ -16,6 +16,11 @@ provisioner:
   env:
     ANSIBLE_PIPELINING: "True"
     ANSIBLE_FORCE_COLOR: "True"
+    ANSIBLE_BECOME_ALLOW_SAME_USER: "True"
+  inventory:
+    group_vars:
+      all:
+        ansible_become_method: su
 
 verifier:
   name: ansible
