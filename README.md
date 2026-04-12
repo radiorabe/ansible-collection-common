@@ -20,6 +20,7 @@ Common Ansible roles and playbooks for [Radio Bern RaBe](https://rabe.ch) infras
 | [`files`](roles/files/README.md) | Idempotent file and directory management |
 | [`git_clone`](roles/git_clone/README.md) | Clone git repositories to remote or local hosts |
 | [`local_user`](roles/local_user/README.md) | Manage local users and groups |
+| [`packages`](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/packages) | Manage installed packages |
 | [`rabe_backup`](roles/rabe_backup/README.md) | Configure hosts for the [RaBe backup](https://github.com/radiorabe/backup) solution |
 | [`selinux_modules`](roles/selinux_modules/README.md) | Download and install SELinux policy modules |
 

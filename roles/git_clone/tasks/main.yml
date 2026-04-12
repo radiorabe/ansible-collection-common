@@ -1,6 +1,12 @@
 ---
 # tasks file for radiorabe.common.git
 
+- name: "RaBe Common : git_clone : Ensure required package is installed {{ 'locally' if radiorabe_git_local_clone else 'on remote host' }}"
+  ansible.builtin.package:
+    name: git
+    state: present
+  delegate_to: "{{ '127.0.0.1' if radiorabe_git_local_clone else omit }}"
+
 - name: "RaBe Common : git_clone : Clone git repository {{ 'locally' if radiorabe_git_local_clone else 'on remote host' }}"
   ansible.builtin.git: "{{ item }}" # noqa: latest args
   with_items: "{{ radiorabe_git_clone }}"
