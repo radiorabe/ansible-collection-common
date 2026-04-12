@@ -1,0 +1,29 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Check that tree package is installed
+      ansible.builtin.command:
+        cmd: rpm -q tree
+      register: tree_rpm
+      changed_when: false
+
+    - name: Check that vim-minimal package is installed
+      ansible.builtin.command:
+        cmd: rpm -q vim-minimal
+      register: vim_rpm
+      changed_when: false
+
+    - name: Assert packages are installed
+      ansible.builtin.assert:
+        that:
+          - tree_rpm.rc == 0
+          - vim_rpm.rc == 0
+        success_msg: "All requested packages are installed"
+        fail_msg: "One or more packages are not installed"
+
+    - name: Apply packages role with empty list (idempotency check)
+      ansible.builtin.include_role:
+        name: radiorabe.common.packages
+      vars:
+        packages_packages: []

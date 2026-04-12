@@ -10,6 +10,7 @@ write_list:
 
 warn_list:
   - experimental
+  - meta-runtime[unsupported-version]
 
 # Profile can be: min, basic, moderate, safety, shared, production
 profile: production
