@@ -19,8 +19,8 @@ updates:
     commit-message:
       prefix: "chore(ci): "
     groups:
-      actions:
-        pip:
+      pip:
+        patterns:
           - "*"
     cooldown:
       default-days: 7
