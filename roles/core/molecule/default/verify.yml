@@ -2,6 +2,10 @@
 - name: Verify
   hosts: all
   tasks:
+    - name: Apply core role to populate facts
+      ansible.builtin.include_role:
+        name: radiorabe.common.core
+
     - name: Check that all core facts are defined
       ansible.builtin.assert:
         that:

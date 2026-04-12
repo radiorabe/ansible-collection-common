@@ -7,7 +7,7 @@
         name: radiorabe.common.selinux_modules
       vars:
         selinux_modules_download_file_urls:
-          - url: "https://rabe.ch/wp-content/uploads/2016/07/favicon.ico"
+          - url: "https://raw.githubusercontent.com/radiorabe/ansible-collection-common/main/galaxy.yml"
             state: enabled
         selinux_modules_download_file_destination: /tmp/
         selinux_modules_download_file_mode: "0600"
@@ -18,7 +18,7 @@
         name: radiorabe.common.selinux_modules
       vars:
         selinux_modules_download_file_urls:
-          - url: "https://rabe.ch/wp-content/uploads/2016/07/favicon.ico"
+          - url: "https://raw.githubusercontent.com/radiorabe/ansible-collection-common/main/galaxy.yml"
             state: disabled
         selinux_modules_download_file_destination: /tmp/
         selinux_modules_download_file_locally: false

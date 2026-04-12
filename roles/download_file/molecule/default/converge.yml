@@ -6,8 +6,8 @@
       ansible.builtin.include_role:
         name: radiorabe.common.download_file
       vars:
-        download_file_url: "https://rabe.ch/wp-content/uploads/2016/07/favicon.ico"
-        download_file_destination: /tmp/test_remote_favicon.ico
+        download_file_url: "https://raw.githubusercontent.com/radiorabe/ansible-collection-common/main/galaxy.yml"
+        download_file_destination: /tmp/test_remote_download.yml
         download_file_mode: "0644"
         download_file_locally: false
 
@@ -15,7 +15,7 @@
       ansible.builtin.include_role:
         name: radiorabe.common.download_file
       vars:
-        download_file_url: "https://rabe.ch/wp-content/uploads/2016/07/favicon.ico"
-        download_file_destination: /tmp/test_restricted_favicon.ico
+        download_file_url: "https://raw.githubusercontent.com/radiorabe/ansible-collection-common/main/galaxy.yml"
+        download_file_destination: /tmp/test_restricted_download.yml
         download_file_mode: "0600"
         download_file_locally: false

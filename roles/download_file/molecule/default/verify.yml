@@ -4,12 +4,12 @@
   tasks:
     - name: Stat remote-downloaded file
       ansible.builtin.stat:
-        path: /tmp/test_remote_favicon.ico
+        path: /tmp/test_remote_download.yml
       register: remote_file
 
     - name: Stat restricted-permissions file
       ansible.builtin.stat:
-        path: /tmp/test_restricted_favicon.ico
+        path: /tmp/test_restricted_download.yml
       register: restricted_file
 
     - name: Assert remote-downloaded file exists with correct permissions

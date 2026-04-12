@@ -4,7 +4,7 @@
   tasks:
     - name: Stat downloaded SELinux module file
       ansible.builtin.stat:
-        path: /tmp/favicon.ico
+        path: /tmp/galaxy.yml
       register: downloaded_module
 
     - name: Assert enabled module was downloaded
