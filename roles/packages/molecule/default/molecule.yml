@@ -7,7 +7,7 @@ driver:
 
 platforms:
   - name: packages-el9
-    image: ghcr.io/radiorabe/python-minimal:3.3.5
+    image: ghcr.io/almalinux/almalinux:9.7-20260407
     command: sleep infinity
     pre_build_image: true
 
