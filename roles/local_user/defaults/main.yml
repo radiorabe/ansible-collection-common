@@ -1,6 +1,9 @@
 ---
 # defaults for radiorabe.common.local_user
 
+# Required: the username of the account to create
+local_user_username: ""
+
 local_user_additional_groups: ""
 local_user_create_home: false
 local_user_groupname: ""

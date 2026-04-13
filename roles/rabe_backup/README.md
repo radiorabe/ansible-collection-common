@@ -1,47 +1,54 @@
 # Ansible Role - radiorabe.common.rabe_backup
 
-This role configures a host to be integrated with the **radiorabe backup solution**.
+Configures a managed host for integration with the [RaBe backup](https://github.com/radiorabe/backup) solution.
 
-It is responsible for:
-
-1. Optionally configuring an SSH known host entry for secure, password-less backup operations.
-2. Creating the system-wide include/exclude configuration files for the backup agent.
-
-This role is part of the overall backup infrastructure detailed here:
-**[radiorabe/backup](https://github.com/radiorabe/backup)**
+This role handles:
+- Adding the backup server's SSH public key to a user's `known_hosts`
+- Writing `/etc/rabe-backup.include` with paths that should be backed up
+- Writing `/etc/rabe-backup.exclude` with paths that should be excluded from backups
 
 ## Requirements
 
-None
+- Enterprise Linux 9+
+- Ansible Core >=2.14.0
 
 ## Role Variables
 
-| Variable | Default Value | Description |
-| :--- | :--- | :--- |
-| `rabe_backup_ssh_user` | `''` (empty string) | The **username** of the account whose known_hosts file will be modified (e.g., `root` or `backup_user`). |
-| `rabe_backup_ssh_known_host_key` | `''` (empty string) | The **SSH public key entry** to add. Must be a single string in the standard `known_hosts` format (e.g., `hostname,ip_address key_type KEY_CONTENT...`). |
-| `rabe_backup_include_paths` | `[]` (empty list) | An **array of absolute file/directory paths** to be included. Written to `/etc/rabe-backup.include`. The file is only created if this list is not empty. |
-| `rabe_backup_exclude_paths` | `[]` (empty list) | An **array of absolute file/directory paths** to be excluded. Written to `/etc/rabe-backup.exclude`. The file is only created if this list is not empty. |
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `rabe_backup_ssh_user` | `""` | Username whose `known_hosts` file should receive the backup server's SSH key. Skipped when empty. |
+| `rabe_backup_ssh_known_host_key` | `""` | Known-hosts-format entry for the backup server (e.g. `backup.example.com ssh-ed25519 AAAA…`). Skipped when empty. |
+| `rabe_backup_include_paths` | `[]` | List of filesystem paths to include in backups. Creates `/etc/rabe-backup.include` when non-empty. |
+| `rabe_backup_exclude_paths` | `[]` | List of filesystem paths to exclude from backups. Creates `/etc/rabe-backup.exclude` when non-empty. |
+
+## Dependencies
+
+None
 
 ## Example Playbook
 
 ```yaml
-- name: Configure backup client settings
-  hosts: all
+- hosts: all
   roles:
-    - role: rabe_backup
+    - role: radiorabe.common.rabe_backup
       vars:
-        # 1. Optional SSH known_hosts config
-        rabe_backup_ssh_user: backup_operator
-        rabe_backup_ssh_known_host_key: "192.168.1.10 ssh-rsa AAAA...your.backup.server.key.here...FQ=="
-
-        # 2. Backup Include/Exclude Paths
+        rabe_backup_ssh_user: root
+        rabe_backup_ssh_known_host_key: "backup.int.rabe.ch ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAA..."
         rabe_backup_include_paths:
-          - /var/www/my-app
-          - /etc/configs/production
+          - /etc
+          - /var/lib/myapp
+          - /home
         rabe_backup_exclude_paths:
-          - /var/log/app.log
+          - /home/*/Downloads
+          - /home/*/.cache
           - /tmp
+```
+
+## Testing
+
+```bash
+cd roles/rabe_backup
+molecule test
 ```
 
 ## License

@@ -1,0 +1,28 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Stat cloned repository directory
+      ansible.builtin.stat:
+        path: /tmp/test_git_remote
+      register: remote_repo
+
+    - name: Stat .git metadata directory
+      ansible.builtin.stat:
+        path: /tmp/test_git_remote/.git
+      register: git_meta
+
+    - name: Stat galaxy.yml in cloned repo (collection-specific file)
+      ansible.builtin.stat:
+        path: /tmp/test_git_remote/galaxy.yml
+      register: galaxy_file
+
+    - name: Assert repository was cloned to remote host
+      ansible.builtin.assert:
+        that:
+          - remote_repo.stat.exists
+          - remote_repo.stat.isdir
+          - git_meta.stat.exists
+          - galaxy_file.stat.exists
+        success_msg: "Repository successfully cloned to remote host"
+        fail_msg: "Repository clone to remote host failed"

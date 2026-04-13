@@ -1,0 +1,13 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: Apply packages role to install packages
+      ansible.builtin.include_role:
+        name: radiorabe.common.packages
+      vars:
+        packages_packages:
+          - name: tree
+            state: present
+          - name: vim-minimal
+            state: present

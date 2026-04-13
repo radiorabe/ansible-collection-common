@@ -1,0 +1,30 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Check that packages are installed
+      ansible.builtin.command:
+        cmd: "rpm -q {{ item }}"
+      register: rpm_check
+      changed_when: false
+      loop:
+        - tree
+        - vim-minimal
+
+    - name: Assert packages are installed
+      ansible.builtin.assert:
+        that:
+          - item.rc == 0
+        success_msg: "Package {{ item.item }} is installed"
+        fail_msg: "Package {{ item.item }} is not installed"
+      loop: "{{ rpm_check.results }}"
+
+    - name: Re-apply packages role with same packages (idempotency check)
+      ansible.builtin.include_role:
+        name: radiorabe.common.packages
+      vars:
+        packages_packages:
+          - name: tree
+            state: present
+          - name: vim-minimal
+            state: present

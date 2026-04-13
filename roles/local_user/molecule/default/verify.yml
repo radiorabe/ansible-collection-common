@@ -1,0 +1,64 @@
+---
+- name: Verify
+  hosts: all
+  tasks:
+    - name: Check system user exists
+      ansible.builtin.command: id mol_sysuser
+      changed_when: false
+      register: sysuser_check
+
+    - name: Check system group exists
+      ansible.builtin.command: getent group mol_sysgroup
+      changed_when: false
+      register: sysgroup_check
+
+    - name: Check regular user exists
+      ansible.builtin.command: id mol_reguser
+      changed_when: false
+      register: reguser_check
+
+    - name: Check additional-group user exists
+      ansible.builtin.command: id mol_groupuser
+      changed_when: false
+      register: groupuser_check
+
+    - name: Assert system user was created
+      ansible.builtin.assert:
+        that:
+          - sysuser_check.rc == 0
+        success_msg: "System user mol_sysuser exists"
+        fail_msg: "System user mol_sysuser was not created"
+
+    - name: Assert system group was created
+      ansible.builtin.assert:
+        that:
+          - sysgroup_check.rc == 0
+        success_msg: "System group mol_sysgroup exists"
+        fail_msg: "System group mol_sysgroup was not created"
+
+    - name: Assert regular user was created
+      ansible.builtin.assert:
+        that:
+          - reguser_check.rc == 0
+        success_msg: "Regular user mol_reguser exists"
+        fail_msg: "Regular user mol_reguser was not created"
+
+    - name: Stat regular user home directory
+      ansible.builtin.stat:
+        path: /home/mol_reguser
+      register: user_home
+
+    - name: Assert regular user home directory was created
+      ansible.builtin.assert:
+        that:
+          - user_home.stat.exists
+          - user_home.stat.isdir
+        success_msg: "Home directory for mol_reguser exists"
+        fail_msg: "Home directory for mol_reguser was not created"
+
+    - name: Assert additional-group user was created
+      ansible.builtin.assert:
+        that:
+          - groupuser_check.rc == 0
+        success_msg: "Group-member user mol_groupuser exists"
+        fail_msg: "Group-member user mol_groupuser was not created"

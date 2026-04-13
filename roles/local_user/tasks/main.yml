@@ -1,46 +1,21 @@
 ---
 # tasks file for radiorabe.common.local_user
 
-- name: "Get user info for {{ local_user_username }}"
-  ansible.builtin.getent:
-    database: passwd
-    key: "{{ local_user_username }}"
-  ignore_errors: true
-
-- name: "Get group info for {{ local_user_groupname }}"
-  ansible.builtin.getent:
-    database: group
-    key: "{{ local_user_groupname }}"
-  ignore_errors: true
-
-- name: "Add group when does not exist"
+- name: "Ensure group {{ local_user_groupname }}"
   become: true
-  ansible.builtin.command: groupadd {{ local_user_groupname }}
-  when: ansible_facts.getent_group is undefined and local_user_groupname != ''
+  ansible.builtin.group:
+    name: "{{ local_user_groupname }}"
+    state: present
+  when: local_user_groupname | length > 0
 
-- name: "Add user and group when does not exist"
+- name: "Ensure user {{ local_user_username }}"
   become: true
-  ansible.builtin.command:
-    argv: "{{ cmd_argv | zip(cmd_argv_switch) | selectattr('1') | map(attribute='0') | list }}"
-  vars:
-    cmd_argv:
-      - "useradd"
-      - "--create-home"
-      - '--groups="{{ local_user_additional_groups }}"'
-      - '--gid="{{ local_user_groupname }}"'
-      - '--home-dir="{{ local_user_home_directory }}"'
-      - '--shell="{{ local_user_shell }}"'
-      - "--system"
-      - "--add-subids-for-system"
-      - "{{ local_user_username }}"
-    cmd_argv_switch:
-      - true
-      - "{{ local_user_create_home }}"
-      - '{{ local_user_additional_groups != "" }}'
-      - '{{ local_user_groupname != "" }}'
-      - '{{ local_user_home_directory != "" }}'
-      - '{{ local_user_shell != "" }}'
-      - "{{ local_user_system }}"
-      - "{{ local_user_system }}"
-      - true
-  when: ansible_facts.getent_passwd is undefined
+  ansible.builtin.user:
+    name: "{{ local_user_username }}"
+    groups: "{{ local_user_additional_groups if local_user_additional_groups | length > 0 else omit }}"
+    group: "{{ local_user_groupname if local_user_groupname | length > 0 else omit }}"
+    home: "{{ local_user_home_directory if local_user_home_directory | length > 0 else omit }}"
+    shell: "{{ local_user_shell if local_user_shell | length > 0 else omit }}"
+    system: "{{ local_user_system }}"
+    create_home: "{{ local_user_create_home }}"
+    state: present
