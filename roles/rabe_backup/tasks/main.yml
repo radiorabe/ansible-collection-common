@@ -1,15 +1,27 @@
 ---
 # tasks file for radiorabe.common.rabe_backup
 
-- name: Add specified SSH public key to user's known_hosts
-  ansible.builtin.known_hosts:
+- name: Create specified backup user
+  ansible.builtin.user:
     name: "{{ rabe_backup_ssh_user }}"
-    key: "{{ rabe_backup_ssh_known_host_key }}"
-    state: present
+    system: true
+  when: rabe_backup_ssh_user is defined and rabe_backup_ssh_user | length > 0
+
+- name: Add specified SSH public key to user's authorized_keys
+  ansible.posix.authorized_key:
+    user: "{{ rabe_backup_ssh_user }}"
+    key: "{{ rabe_backup_ssh_public_key }}"
   # This task is only executed if both the username and the key are defined
   when:
     - rabe_backup_ssh_user is defined and rabe_backup_ssh_user | length > 0
-    - rabe_backup_ssh_known_host_key is defined and rabe_backup_ssh_known_host_key | length > 0
+    - rabe_backup_ssh_public_key is defined and rabe_backup_ssh_public_key | length > 0
+
+- name: Configure sudo rule for backup user
+  community.general.sudoers:
+    name: sudo-rsync-backup
+    user: "{{ rabe_backup_ssh_user }}"
+    commands: /bin/rsync
+  when: rabe_backup_ssh_user is defined and rabe_backup_ssh_user | length > 0
 
 - name: Create /etc/rabe-backup.include file from array
   ansible.builtin.copy:
