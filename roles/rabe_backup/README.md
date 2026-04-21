@@ -4,7 +4,7 @@ This role configures a host to be integrated with the **radiorabe backup solutio
 
 It is responsible for:
 
-1. Optionally configuring an SSH known host entry for secure, password-less backup operations.
+1. Optionally creating a local user including an SSH authorized_keys entry and sudo rule for secure, password-less backup operations.
 2. Creating the system-wide include/exclude configuration files for the backup agent.
 
 This role is part of the overall backup infrastructure detailed here:
@@ -18,8 +18,8 @@ None
 
 | Variable | Default Value | Description |
 | :--- | :--- | :--- |
-| `rabe_backup_ssh_user` | `''` (empty string) | The **username** of the account whose known_hosts file will be modified (e.g., `root` or `backup_user`). |
-| `rabe_backup_ssh_known_host_key` | `''` (empty string) | The **SSH public key entry** to add. Must be a single string in the standard `known_hosts` format (e.g., `hostname,ip_address key_type KEY_CONTENT...`). |
+| `rabe_backup_ssh_user` | `''` (empty string) | The **username** of the account who will be created and whose authorized_keys file will be modified (e.g., `root` or `backup_user`). |
+| `rabe_backup_ssh_public_key` | `''` (empty string) | The **SSH public key** to add to the user's authorized_keys file. Must be a single string in the standard `authorized_keys` format (e.g., `ssh_rsa AAAAB3NzaC1y...`). |
 | `rabe_backup_include_paths` | `[]` (empty list) | An **array of absolute file/directory paths** to be included. Written to `/etc/rabe-backup.include`. The file is only created if this list is not empty. |
 | `rabe_backup_exclude_paths` | `[]` (empty list) | An **array of absolute file/directory paths** to be excluded. Written to `/etc/rabe-backup.exclude`. The file is only created if this list is not empty. |
 
@@ -31,9 +31,9 @@ None
   roles:
     - role: rabe_backup
       vars:
-        # 1. Optional SSH known_hosts config
+        # 1. Optional SSH local user and authorized_keys config
         rabe_backup_ssh_user: backup_operator
-        rabe_backup_ssh_known_host_key: "192.168.1.10 ssh-rsa AAAA...your.backup.server.key.here...FQ=="
+        rabe_backup_ssh_public_key: "ssh-rsa AAAA...your.backup.server.key.here...FQ== user@backup"
 
         # 2. Backup Include/Exclude Paths
         rabe_backup_include_paths:
