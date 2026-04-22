@@ -33,7 +33,7 @@ None
       vars:
         # 1. Optional SSH local user and authorized_keys config
         rabe_backup_ssh_user: backup_operator
-        rabe_backup_ssh_public_key: "ssh-rsa AAAA...your.backup.server.key.here...FQ== user@backup"
+        rabe_backup_ssh_public_key: "ssh-rsa AAAA...your.backup.users.public.ssh.key.here...FQ== user@backup"
 
         # 2. Backup Include/Exclude Paths
         rabe_backup_include_paths:
