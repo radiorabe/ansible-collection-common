@@ -1,14 +1,14 @@
 ---
 # defaults for radiorabe.common.rabe_backup
 
-# --- SSH Known Hosts Configuration ---
-# The username of the account whose known_hosts file will be modified.
+# --- SSH Authorized Keys Configuration ---
+# The username of the account who will be created and whose authorized_keys file will be modified.
 # The task is skipped if this value is an empty string.
 rabe_backup_ssh_user: ""
 
-# The public key entry to add. Must be in known_hosts format (e.g., 'host.example.com,192.0.2.1 ssh-rsa AAAA...').
+# The public key entry to add. Must be in authorized_keys format (e.g., 'ssh_rsa AAAAB3NzaC1y...').
 # The task is skipped if this value is an empty string.
-rabe_backup_ssh_known_host_key: ""
+rabe_backup_ssh_public_key: ""
 
 # --- Backup Include/Exclude Configuration ---
 # Array of paths (one path per list item) to be written to /etc/rabe-backup.include.
