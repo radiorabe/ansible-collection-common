@@ -7,12 +7,12 @@ on:
 
 jobs:
   call-workflow:
-    uses: radiorabe/actions/.github/workflows/test-ansible-collection.yaml@479996126a091287dc3fd349786f6f8a6dd1b23c # v0.42.0
+    uses: radiorabe/actions/.github/workflows/test-ansible-collection.yaml@f49d301c653f9aa0d99bec7b7f18f2d789e93fa7 # v0.43.4
   github-actions:
     permissions:
       contents: read
       security-events: write # so zizmor can publish results to the Security tab
-    uses: radiorabe/actions/.github/workflows/test-github-actions.yaml@479996126a091287dc3fd349786f6f8a6dd1b23c # v0.42.0
+    uses: radiorabe/actions/.github/workflows/test-github-actions.yaml@f49d301c653f9aa0d99bec7b7f18f2d789e93fa7 # v0.43.4
   molecule:
     runs-on: ubuntu-latest
     permissions:
@@ -37,7 +37,7 @@ jobs:
           persist-credentials: false
 
       - name: Set up Python
-        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
         with:
           python-version: "3.12"
           cache: pip
