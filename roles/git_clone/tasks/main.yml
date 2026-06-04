@@ -6,6 +6,7 @@
     name: git
     state: present
   delegate_to: "{{ '127.0.0.1' if radiorabe_git_local_clone else omit }}"
+  become: true
 
 - name: "RaBe Common : git_clone : Clone git repository {{ 'locally' if radiorabe_git_local_clone else 'on remote host' }}"
   ansible.builtin.git: "{{ item }}" # noqa: latest args
