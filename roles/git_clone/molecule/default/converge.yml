@@ -1,0 +1,14 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: Clone repository to remote host
+      ansible.builtin.include_role:
+        name: radiorabe.common.git_clone
+      vars:
+        radiorabe_git_clone:
+          - repo: "https://github.com/radiorabe/ansible-collection-common.git"
+            dest: /tmp/test_git_remote
+            version: main
+            depth: 1
+        radiorabe_git_local_clone: false

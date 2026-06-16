@@ -1,0 +1,25 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: Apply rabe_backup role with include and exclude paths
+      ansible.builtin.include_role:
+        name: radiorabe.common.rabe_backup
+      vars:
+        rabe_backup_include_paths:
+          - /etc
+          - /var/lib/data
+          - /home
+          - /opt/app
+        rabe_backup_exclude_paths:
+          - /home/*/Downloads
+          - /home/*/.cache
+          - /tmp
+          - /var/tmp
+
+    - name: Apply rabe_backup role with empty paths (should create no files)
+      ansible.builtin.include_role:
+        name: radiorabe.common.rabe_backup
+      vars:
+        rabe_backup_include_paths: []
+        rabe_backup_exclude_paths: []

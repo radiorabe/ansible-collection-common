@@ -1,28 +1,24 @@
 # Ansible Role - radiorabe.common.files
 
-Manage files using [`ansible.builtin.file module`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html)
-and [`ansible.builtin.copy module`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html).
-
-Mainly for use as a workaround when managing a full role/collection for one single file isn't worth it.
+Idempotent management of files and directories using `ansible.builtin.file` and `ansible.builtin.copy`.
 
 ## Requirements
 
-None
+- Enterprise Linux 9+
+- Ansible Core >=2.14.0
 
 ## Role Variables
 
 | Variable | Default | Description |
-| -------- | ------- | ----------- |
-| `radiorabe_files` | `[]` | Files to manage. Don't pass any unsafe input! |
-| `radiorabe_copies` | `[]` | Files to manage. Don't pass any unsafe input! |
+|----------|---------|-------------|
+| `radiorabe_files` | `[]` | List of parameter dicts passed directly to `ansible.builtin.file`. Each item supports all `file` module parameters (`path`, `state`, `mode`, `owner`, `group`, etc.). |
+| `radiorabe_copies` | `[]` | List of parameter dicts passed directly to `ansible.builtin.copy`. Each item supports all `copy` module parameters (`src`, `content`, `dest`, `mode`, `owner`, `group`, etc.). |
 
 ## Dependencies
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None
 
 ## Example Playbook
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
 ```yaml
 - hosts: all
@@ -30,10 +26,29 @@ Including an example of how to use your role (for instance, with variables passe
     - role: radiorabe.common.files
       vars:
         radiorabe_files:
-          - path: foo.conf
+          - path: /opt/myapp
+            state: directory
+            mode: "0755"
+            owner: myapp
+            group: myapp
+          - path: /etc/myapp/config.conf
             state: touch
-            mode: u=rw,g=r,o=r
-        radiorabe_copies: []
+            mode: "0640"
+        radiorabe_copies:
+          - content: |
+              [settings]
+              debug = false
+            dest: /etc/myapp/config.conf
+            mode: "0640"
+            owner: myapp
+            group: myapp
+```
+
+## Testing
+
+```bash
+cd roles/files
+molecule test
 ```
 
 ## License

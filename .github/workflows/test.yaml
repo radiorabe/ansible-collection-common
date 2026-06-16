@@ -13,3 +13,38 @@ jobs:
       contents: read
       security-events: write # so zizmor can publish results to the Security tab
     uses: radiorabe/actions/.github/workflows/test-github-actions.yaml@b37e51397726092d8462a2a9b676ea5a5e3a8deb # v0.44.1
+  molecule:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    strategy:
+      matrix:
+        role:
+          - base
+          - core
+          - download_file
+          - files
+          - git_clone
+          - local_user
+          - packages
+          - rabe_backup
+          - selinux_modules
+      fail-fast: false
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install Molecule and dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Molecule tests for role ${{ matrix.role }}
+        run: molecule test
+        working-directory: roles/${{ matrix.role }}

@@ -1,0 +1,9 @@
+---
+- name: Prepare - Install required packages on instances
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: Install git
+      ansible.builtin.dnf:
+        name: git
+        state: present

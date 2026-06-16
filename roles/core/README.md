@@ -1,32 +1,45 @@
 # Ansible Role - radiorabe.common.core
 
-Defines a baseline set of variables for use in other roles.
+Defines a baseline set of variables for use in other roles. This role acts as the single source of truth for site-wide settings such as domain names, realm, and administrative contact details.
 
 ## Requirements
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+- Enterprise Linux 9+
+- Ansible Core >=2.14.0
 
 ## Role Variables
 
 | Variable | Default | Description |
-| -------- | ------- | ----------- |
-| `radiorabe_core_hostname` | Our public domain name | `rabe.ch` |
-| `radiorabe_core_int_hostname` | Our internal third level domain | `int.{{ radiorabe_hostname }}` |
-| `radiorabe_core_realm` | Name of the RaBe realm | Uppercase of `{{ radiorabe_core_int_hostname }}` |
-| `radiorabe_core_admin_name` | Name of Tech Group | `RaBe IT-Reaktion` |
-| `radiorabe_core_admin_mail` | Mail of Tech Group (for use as serveradmin, ...) | `it@{{ radiorabe_core_hostname }}` |
+|----------|---------|-------------|
+| `radiorabe_core_hostname` | `rabe.ch` | Public base domain name. |
+| `radiorabe_core_int_hostname` | `int.rabe.ch` | Internal third-level domain (`int.{{ radiorabe_core_hostname }}`). |
+| `radiorabe_core_realm` | `INT.RABE.CH` | Kerberos/FreeIPA realm name (uppercase of `radiorabe_core_int_hostname`). |
+| `radiorabe_core_admin_name` | `RaBe IT-Reaktion` | Human-readable name of the technical operations group. |
+| `radiorabe_core_admin_mail` | `it@rabe.ch` | Contact e-mail of the operations group (`it@{{ radiorabe_core_hostname }}`). |
 
 ## Dependencies
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None
 
 ## Example Playbook
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+```yaml
+- hosts: all
+  roles:
+    - role: radiorabe.common.core
 
-    - hosts: all
-      roles:
-         - { role: radiorabe.common.core }
+    # Override for a staging environment:
+    - role: radiorabe.common.core
+      vars:
+        radiorabe_core_hostname: staging.rabe.ch
+```
+
+## Testing
+
+```bash
+cd roles/core
+molecule test
+```
 
 ## License
 

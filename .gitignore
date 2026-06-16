@@ -1,0 +1,16 @@
+# Python virtual environments
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Ansible local install paths used during development/linting
+.ansible/
+
+# Molecule temporary directories
+.molecule/
+
+# Editor and OS files
+.DS_Store
+*.swp
+*.swo

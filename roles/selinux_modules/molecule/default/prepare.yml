@@ -1,0 +1,50 @@
+---
+- name: Prepare - Create mock redhat.rhel_system_roles collection
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Create redhat.rhel_system_roles collection structure (mock)
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        mode: "0755"
+      loop:
+        - "{{ lookup('env', 'HOME') }}/.ansible/collections/ansible_collections/redhat/rhel_system_roles/roles/selinux/tasks"
+        - "{{ lookup('env', 'HOME') }}/.ansible/collections/ansible_collections/redhat/rhel_system_roles/roles/selinux/defaults"
+
+    - name: Create mock galaxy.yml for redhat.rhel_system_roles
+      ansible.builtin.copy:
+        content: |
+          namespace: redhat
+          name: rhel_system_roles
+          version: 1.0.0
+          readme: README.md
+          authors:
+            - Red Hat, Inc.
+          description: Mock collection for molecule testing
+        dest: "{{ lookup('env', 'HOME') }}/.ansible/collections/ansible_collections/redhat/rhel_system_roles/galaxy.yml"
+        mode: "0644"
+
+    - name: Create mock selinux role defaults
+      ansible.builtin.copy:
+        content: |
+          ---
+          selinux_modules: []
+        dest: "{{ lookup('env', 'HOME') }}/.ansible/collections/ansible_collections/redhat/rhel_system_roles/roles/selinux/defaults/main.yml"
+        mode: "0644"
+
+    - name: Create mock selinux role tasks (records modules instead of installing)
+      ansible.builtin.copy:
+        content: |
+          ---
+          - name: Mock selinux role - record modules to be applied
+            ansible.builtin.set_fact:
+              selinux_modules_applied: "{% raw %}{{ selinux_modules | default([]) }}{% endraw %}"
+              cacheable: false
+
+          - name: Mock selinux role - debug modules
+            ansible.builtin.debug:
+              msg: "Mock: would install SELinux module {% raw %}{{ item.path }}{% endraw %} (state={% raw %}{{ item.state | default('enabled') }}{% endraw %})"
+            loop: "{% raw %}{{ selinux_modules | default([]) }}{% endraw %}"
+        dest: "{{ lookup('env', 'HOME') }}/.ansible/collections/ansible_collections/redhat/rhel_system_roles/roles/selinux/tasks/main.yml"
+        mode: "0644"

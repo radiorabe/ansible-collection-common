@@ -1,0 +1,5 @@
+---
+# Ansible collection dependencies for development and testing
+# Note: redhat.rhel_system_roles is required at runtime by selinux_modules role;
+# it is declared as a collection dependency in galaxy.yml and mocked in molecule tests.
+collections: []

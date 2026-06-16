@@ -8,10 +8,8 @@ galaxy_info:
   platforms:
     - name: EL
       versions:
-        - all
-    - name: Fedora
-      version:
-        - all
+        - "9"
+        - "10"
   galaxy_tags:
     - radiorabe
     - foreman

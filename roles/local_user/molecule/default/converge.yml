@@ -1,0 +1,30 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: Create dedicated group and system user
+      ansible.builtin.include_role:
+        name: radiorabe.common.local_user
+      vars:
+        local_user_username: mol_sysuser
+        local_user_groupname: mol_sysgroup
+        local_user_system: true
+        local_user_create_home: false
+
+    - name: Create regular user with home directory and shell
+      ansible.builtin.include_role:
+        name: radiorabe.common.local_user
+      vars:
+        local_user_username: mol_reguser
+        local_user_shell: /bin/bash
+        local_user_create_home: true
+        local_user_system: false
+
+    - name: Create user with additional group membership
+      ansible.builtin.include_role:
+        name: radiorabe.common.local_user
+      vars:
+        local_user_username: mol_groupuser
+        local_user_additional_groups: mol_sysgroup
+        local_user_create_home: false
+        local_user_system: false

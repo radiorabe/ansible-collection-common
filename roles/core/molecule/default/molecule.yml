@@ -1,0 +1,26 @@
+---
+dependency:
+  name: galaxy
+
+driver:
+  name: podman
+
+platforms:
+  - name: core-el9
+    image: ghcr.io/radiorabe/python-minimal:3.3.5
+    command: sleep infinity
+    pre_build_image: true
+
+provisioner:
+  name: ansible
+  env:
+    ANSIBLE_PIPELINING: "True"
+    ANSIBLE_FORCE_COLOR: "True"
+    ANSIBLE_BECOME_ALLOW_SAME_USER: "True"
+  inventory:
+    group_vars:
+      all:
+        ansible_become_method: su
+
+verifier:
+  name: ansible
