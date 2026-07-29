@@ -14,7 +14,8 @@ tags:
   - common
   - infrastructure
   - tools
-dependencies: {}
+dependencies:
+  "ansible.posix": ">=2.1.0"
 repository: https://github.com/radiorabe/ansible-collection-common
 documentation: https://github.com/radiorabe/ansible-collection-common/blob/main/README.md
 homepage: https://github.com/radiorabe/ansible-collection-common
