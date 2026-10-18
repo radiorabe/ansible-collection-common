@@ -7,6 +7,6 @@ on:
 
 jobs:
   call-workflow:
-    uses: radiorabe/actions/.github/workflows/semantic-release.yaml@3f1ee42ffa54794a512d3989c34e3b4514de64cc # v0.43.1
+    uses: radiorabe/actions/.github/workflows/semantic-release.yaml@c26933dd78f0f76b51d1e3bb80ac099bfe0ee89b # v0.45.0
     secrets:
       RABE_ITREAKTION_GITHUB_TOKEN: ${{ secrets.RABE_ITREAKTION_GITHUB_TOKEN }}
