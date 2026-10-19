@@ -17,10 +17,11 @@
     - rabe_backup_ssh_public_key is defined and rabe_backup_ssh_public_key | length > 0
 
 - name: Configure sudo rule for backup user
-  community.general.sudoers:
-    name: sudo-rsync-backup
-    user: "{{ rabe_backup_ssh_user }}"
-    commands: /bin/rsync
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers.d/rabe_backup
+    create: true
+    line: "{{ rabe_backup_ssh_user }} ALL=NOPASSWD: /bin/rsync"
+    mode: "0600"
   when: rabe_backup_ssh_user is defined and rabe_backup_ssh_user | length > 0
 
 - name: Create /etc/rabe-backup.include file from array
