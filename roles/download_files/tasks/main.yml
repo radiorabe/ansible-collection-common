@@ -1,0 +1,8 @@
+---
+# tasks file for download_files
+- name: Download file {{ 'locally' if download_files_locally }}
+  ansible.builtin.get_url:
+    url: "{{ download_files_url }}"
+    dest: "{{ download_files_destination }}"
+    mode: "{{ download_files_mode }}"
+  delegate_to: "{{ '127.0.0.1' if download_files_locally else omit }}"
