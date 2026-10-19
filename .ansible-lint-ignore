@@ -13,9 +13,3 @@ roles/git_clone/defaults/main.yml var-naming[no-role-prefix]
 # We should make this configurable and default to 644
 roles/git_clone/tasks/main.yml risky-file-permissions
 
-# These should be fixed at some point
-roles/local_user/tasks/main.yml ignore-errors
-roles/local_user/tasks/main.yml no-changed-when
-
-# We should start writing changelogs at some point
-galaxy.yml galaxy[no-changelog]
