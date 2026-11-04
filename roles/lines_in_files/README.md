@@ -11,6 +11,7 @@ None
 | Variable | Default | Description |
 | -------- | ------- | ----------- |
 | `lines_in_files_parameters_array` | `[]` | Lines in files to manage. Don't pass any unsafe input! |
+| `lines_in_files_no_log` | `false` | Whether to hide task output in logs. |
 
 ## Dependencies
 

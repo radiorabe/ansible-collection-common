@@ -4,3 +4,4 @@
 - name: "RaBe Base : Manage lines in files"
   ansible.builtin.lineinfile: "{{ item }}" # noqa: args
   loop: "{{ lines_in_files_parameters_array }}"
+  no_log: "{{ lines_in_files_no_log }}"
