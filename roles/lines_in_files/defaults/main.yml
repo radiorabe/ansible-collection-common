@@ -1,0 +1,5 @@
+---
+# defaults for radiorabe.common.lines_in_files
+
+lines_in_files_parameters_array: []
+lines_in_files_no_log: false
