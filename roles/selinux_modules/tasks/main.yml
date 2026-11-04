@@ -3,12 +3,12 @@
 
 - name: Download selinux modules
   ansible.builtin.include_role:
-    name: radiorabe.common.download_file
+    name: radiorabe.common.download_files
   vars:
-    download_file_url: "{{ item.url }}"
-    download_file_destination: "{{ selinux_modules_download_file_destination }}"
-    download_file_mode: "{{ selinux_modules_download_file_mode }}"
-    download_file_locally: "{{ selinux_modules_download_file_locally }}"
+    download_files_url: "{{ item.url }}"
+    download_files_destination: "{{ selinux_modules_download_file_destination }}"
+    download_files_mode: "{{ selinux_modules_download_file_mode }}"
+    download_files_locally: "{{ selinux_modules_download_file_locally }}"
   with_items: "{{ selinux_modules_download_file_urls }}"
   when: item.state is not defined or item.state == 'enabled'
 

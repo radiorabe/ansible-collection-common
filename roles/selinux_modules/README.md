@@ -1,10 +1,10 @@
 # Ansible Role - radiorabe.common.selinux_modules
 
-This role downloads and installs selinux modules. It includes the roles [radiorabe.common.download_file](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/download_file) and [redhat.rhel_system_roles.selinux](https://github.com/linux-system-roles/selinux).
+This role downloads and installs selinux modules. It includes the roles [radiorabe.common.download_files](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/download_files) and [redhat.rhel_system_roles.selinux](https://github.com/linux-system-roles/selinux).
 
 ## Requirements
 
-* [radiorabe.common.download_file](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/download_file) 
+* [radiorabe.common.download_files](https://github.com/radiorabe/ansible-collection-common/tree/main/roles/download_files) 
 * [redhat.rhel_system_roles.selinux](https://github.com/linux-system-roles/selinux)
 
 ## Role Variables
