@@ -1,0 +1,6 @@
+---
+# tasks file for radiorabe.common.lines_in_files
+
+- name: "RaBe Base : Manage lines in files"
+  ansible.builtin.lineinfile: "{{ item }}" # noqa: args
+  with_items: "{{ lines_in_files_parameters_array }}"
